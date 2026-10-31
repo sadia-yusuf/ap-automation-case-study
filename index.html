@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AP Invoice Automation — Case Study | Sadia Yusuf</title>
+<meta name="description" content="How a Chartered Accountant automated accounts payable: AI reads supplier invoices, rules check them, humans approve exceptions, and bills post to QuickBooks with a full audit trail.">
+<meta property="og:title" content="AP Invoice Automation — Case Study">
+<meta property="og:description" content="AI proposes. Rules constrain. Humans approve. Supplier invoices posted to QuickBooks with controls and an audit trail.">
+<meta property="og:image" content="assets/poster.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fdf6ef;--card:#fff;--ink:#202227;--mut:#6f737c;--line:#f0e2d6;--or:#ff6a1a;--or-soft:#fff0e6;--gr:#1f9d55;--gr-soft:#e6f6ec;--rd:#d6343a;--rd-soft:#fdeceb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,video{max-width:100%;height:auto;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);z-index:-1;pointer-events:none}
+nav{position:sticky;top:0;z-index:10;background:#fdf6efe6;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--or);display:grid;place-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--or);color:#fff;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;box-shadow:0 12px 26px -12px #ff6a1a99;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 16px 30px -12px #ff6a1acc}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.btn.sm{padding:9px 18px;font-size:15px}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--or);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.eyebrow:before{content:'';width:32px;height:3px;border-radius:2px;background:var(--or)}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.08;margin:0}
+h1{font-size:clamp(38px,6vw,68px);font-weight:800}
+h2{font-size:clamp(30px,4vw,46px);font-weight:800;margin-bottom:16px}
+h3{font-size:21px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.dot{color:var(--or)}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--mut);max-width:680px;margin:20px 0 30px}
+section{padding:88px 0}
+.hero{padding:72px 0 40px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.tag{font-size:14px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.video{margin-top:44px;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 40px 80px -30px #b978504d,0 0 0 1px var(--line)}
+.video video{width:100%;height:auto}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.stat{background:var(--card);border-radius:18px;padding:22px 24px;box-shadow:0 0 0 1px var(--line)}
+.stat b{display:block;font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--or)}
+.stat span{color:var(--mut);font-size:15px;font-weight:600}
+.note{font-size:14px;color:var(--mut);margin-top:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.card{background:var(--card);border-radius:20px;box-shadow:0 0 0 1px var(--line),0 24px 50px -30px #b9785040;padding:28px}
+.list{list-style:none;padding:0;margin:0}
+.list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border:0}
+.x,.ok{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;margin-top:2px;font-size:14px;font-weight:800;color:#fff}
+.x{background:var(--rd)}.ok{background:var(--gr)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.step .n{width:44px;height:44px;border-radius:12px;background:var(--or);color:#fff;font-weight:800;display:grid;place-items:center;margin-bottom:16px}
+.step p{color:var(--mut);margin:8px 0 12px;font-size:16px}
+.step small{display:block;font-size:13px;font-weight:700;color:var(--or)}
+.shot{margin-top:36px;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px var(--line),0 30px 60px -34px #b978505e}
+.shot figcaption{font-size:14px;color:var(--mut);padding:12px 18px;border-top:1px solid var(--line)}
+.scroll{overflow-x:auto}
+.scroll img{min-width:900px}
+.controls{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+.ctl{display:flex;gap:16px}
+.ctl p{margin:6px 0 0;color:var(--mut);font-size:16px}
+.route{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.pill{border-radius:14px;padding:16px 18px;font-weight:700;font-size:15px}
+.pill small{display:block;font-weight:500;margin-top:4px;font-size:14px}
+.p-ok{background:var(--gr-soft);color:#14713c}.p-rv{background:var(--rd-soft);color:#a3252a}.p-ap{background:var(--or-soft);color:#b5470a}.p-hd{background:#eef0f4;color:#3c4250}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td,th{text-align:left;padding:12px 0;border-bottom:1px solid var(--line)}
+th{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:700}
+td:last-child,th:last-child{text-align:right;font-weight:700}
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.offer{background:var(--ink);color:#fff;border-radius:26px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.offer h2{color:#fff}
+.offer p{color:#c9ccd3}
+.offer ul{margin:0;padding:0;list-style:none}
+.offer li{padding:10px 0;border-bottom:1px solid #ffffff1f;display:flex;gap:12px}
+.offer li:before{content:'✓';color:var(--or);font-weight:800}
+details{background:#fff;border-radius:16px;box-shadow:0 0 0 1px var(--line);padding:18px 22px;margin-bottom:12px}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:'+';color:var(--or);font-weight:800;font-size:22px;line-height:1}
+details[open] summary:after{content:'–'}
+details p{color:var(--mut);margin:12px 0 0}
+.about{display:flex;gap:28px;align-items:flex-start}
+.avatar{flex:none;width:88px;height:88px;border-radius:24px;background:linear-gradient(140deg,#ffb27d,#ff6a1a);display:grid;place-items:center;color:#fff;font-weight:800;font-size:30px}
+footer{padding:40px 0 60px;color:var(--mut);font-size:15px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:860px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .two,.offer{grid-template-columns:1fr;gap:32px}
+  .steps,.controls{grid-template-columns:1fr}
+  .route{grid-template-columns:repeat(2,1fr)}
+  .offer{padding:32px 24px}
+  section{padding:64px 0}
+  .about{flex-direction:column}
+  nav .btn{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<!--
+  BEFORE PUBLISHING: set your two links here (search for these and replace):
+  BOOK_CALL_URL  → your Calendly / Google Calendar booking link
+  LINKEDIN_URL   → your LinkedIn profile URL
+-->
+<div class="blob" style="width:700px;height:700px;background:#ffd6b8;left:-240px;top:300px"></div>
+<div class="blob" style="width:600px;height:600px;background:#ffe3cf;right:-200px;top:-200px"></div>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="logo"><svg width="20" height="20" viewBox="0 0 64 64"><rect x="14" y="8" width="36" height="46" rx="6" fill="#fff"/><circle cx="46" cy="46" r="13" fill="#202227"/><path d="M40 46l4 4 8-8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AP Automation · Case Study</a>
+  <a class="btn sm" href="BOOK_CALL_URL">Book a 20-min call</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="eyebrow">Case study · Accounts payable</div>
+  <h1>Supplier invoices, posted<br>with controls<span class="dot">.</span></h1>
+  <p class="lead">An AI workflow that reads invoice PDFs from an inbox, checks them like an auditor would, sends anything doubtful to a human, and posts the rest as bills in QuickBooks with a full audit trail.</p>
+  <div class="ctas">
+    <a class="btn" href="BOOK_CALL_URL">Book a 20-min walkthrough →</a>
+    <a class="btn ghost" href="https://github.com/sadia-yusuf/novatech-ap-automation">See the build on GitHub</a>
+  </div>
+  <div class="tags"><span class="tag">n8n</span><span class="tag">OpenAI</span><span class="tag">QuickBooks Online</span><span class="tag">Gmail</span><span class="tag">Google Sheets</span></div>
+
+  <div class="video">
+    <video controls playsinline preload="metadata" poster="assets/poster.jpg">
+      <source src="assets/ap-automation.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>19</b><span>invoices processed in the test run</span></div>
+    <div class="stat"><b>12</b><span>posted to QuickBooks automatically</span></div>
+    <div class="stat"><b>7</b><span>held back for a human to review</span></div>
+    <div class="stat"><b>0</b><span>doubtful invoices posted</span></div>
+  </div>
+  <p class="note">Demo build: QuickBooks Online sandbox company, synthetic invoices. Results from a real client would be measured, not estimated.</p>
+</div></header>
+
+<section><div class="wrap two">
+  <div>
+    <div class="eyebrow">The problem</div>
+    <h2>AP still runs on email<span class="dot">.</span></h2>
+    <p class="lead" style="margin-bottom:0">Invoices arrive as PDFs in a shared inbox. Someone opens each one, re-keys it into the accounting system, checks it against what was already entered, and hopes nothing slips through.</p>
+  </div>
+  <div class="card">
+    <ul class="list">
+      <li><span class="x">✕</span><div><b>Manual keying</b><br><span style="color:var(--mut)">Vendor, dates, lines and totals typed in by hand, invoice by invoice.</span></div></li>
+      <li><span class="x">✕</span><div><b>Duplicates slip through</b><br><span style="color:var(--mut)">The same invoice, re-sent by a vendor, gets paid twice.</span></div></li>
+      <li><span class="x">✕</span><div><b>Totals that don't foot</b><br><span style="color:var(--mut)">Line items that don't add up to the invoice total go unnoticed.</span></div></li>
+      <li><span class="x">✕</span><div><b>No trail</b><br><span style="color:var(--mut)">When an auditor asks who approved what, the answer is in someone's inbox.</span></div></li>
+    </ul>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="eyebrow">How it works</div>
+  <h2>One workflow, six stages<span class="dot">.</span></h2>
+  <p class="lead">Built in n8n: 20 nodes from inbox to ledger. The AI only reads the invoice. Rules decide whether it posts.</p>
+  <div class="steps">
+    <div class="card step"><div class="n">01</div><h3>Watches the AP inbox</h3><p>Every invoice PDF that lands in Gmail starts a run. A web form is wired in as a backup intake.</p><small>Gmail Trigger · Extract from File</small></div>
+    <div class="card step"><div class="n">02</div><h3>AI reads the PDF</h3><p>An LLM with a structured output parser turns the PDF into clean data: vendor, invoice number, dates, line items, tax, total.</p><small>OpenAI · Structured Output Parser</small></div>
+    <div class="card step"><div class="n">03</div><h3>Matches and checks</h3><p>Looks up the vendor in QuickBooks, reads the invoice register, then runs the control rules in code.</p><small>QBO vendors · Register · Controls</small></div>
+    <div class="card step"><div class="n">04</div><h3>Routes every invoice</h3><p>Each invoice goes down exactly one path: ready, review, approval or hold.</p><small>Switch (4 outputs)</small></div>
+    <div class="card step"><div class="n">05</div><h3>Codes and posts the bill</h3><p>Maps the vendor to the right expense account and creates the bill in QuickBooks. The bill ID comes back as proof.</p><small>Map GL account · Create QBO bill</small></div>
+    <div class="card step"><div class="n">06</div><h3>Logs every decision</h3><p>Every invoice, posted or not, is written to an audit log with its status, action and reason.</p><small>Audit log · Error alerts</small></div>
+  </div>
+  <figure class="shot scroll" style="margin-left:0;margin-right:0"><img src="assets/workflow.webp" alt="The n8n workflow canvas: Gmail trigger, PDF extraction, OpenAI chain, QuickBooks vendor lookup, controls, switch, bill creation and audit log." loading="lazy" width="1963" height="455"><figcaption>The full n8n workflow, 20 nodes.</figcaption></figure>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="eyebrow">Controls</div>
+  <h2>AI proposes. Rules constrain. Humans approve<span class="dot">.</span></h2>
+  <p class="lead">Nothing reaches the ledger unless it passes four checks. Designed the way an auditor tests a control: every invoice, every time.</p>
+  <div class="controls">
+    <div class="card ctl"><span class="ok">✓</span><div><h3>Vendor is known</h3><p>Matched to an existing vendor record in QuickBooks. Unknown vendors are never auto-created.</p></div></div>
+    <div class="card ctl"><span class="ok">✓</span><div><h3>Not a duplicate</h3><p>Checked against every invoice already in the register, by vendor and invoice number.</p></div></div>
+    <div class="card ctl"><span class="ok">✓</span><div><h3>Lines foot to total</h3><p>Line items plus tax must equal the invoice total, or it goes to review.</p></div></div>
+    <div class="card ctl"><span class="ok">✓</span><div><h3>Within approval limit</h3><p>Large amounts need sign-off, and accruals are held rather than posted.</p></div></div>
+  </div>
+  <div class="route">
+    <div class="pill p-ok">READY<small>Bill created in QuickBooks</small></div>
+    <div class="pill p-rv">EXCEPTION<small>Review email sent</small></div>
+    <div class="pill p-ap">NEEDS APPROVAL<small>Over the approval limit</small></div>
+    <div class="pill p-hd">HOLD<small>Accrual, not posted</small></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap two">
+  <div>
+    <div class="eyebrow">Exceptions</div>
+    <h2>Humans decide the hard ones<span class="dot">.</span></h2>
+    <p style="color:var(--mut)">Seven of the 19 test invoices were stopped before they reached the ledger. Each one triggered a review email with the reason.</p>
+    <table>
+      <thead><tr><th>Reason</th><th>Invoices</th></tr></thead>
+      <tbody>
+        <tr><td>Unknown vendor</td><td>2</td></tr>
+        <tr><td>Exact duplicate</td><td>2</td></tr>
+        <tr><td>Lines don't foot to total</td><td>1</td></tr>
+        <tr><td>Over approval limit</td><td>1</td></tr>
+        <tr><td>Accrual held</td><td>1</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figure class="shot" style="margin:0"><img src="assets/review-email.webp" alt="Review email: AP Review Required, invoice HS-INV-20260223-91, amount USD 800, status EXCEPTION, reason UNKNOWN_VENDOR." loading="lazy" width="961" height="560"><figcaption>A review email for an invoice from an unknown vendor.</figcaption></figure>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap two">
+  <figure class="shot" style="margin:0"><img src="assets/quickbooks-bills.webp" alt="QuickBooks Online bills list showing 18 open bills totalling $51,581.11." loading="lazy" width="980" height="937"><figcaption>QuickBooks Online: bills created through the API.</figcaption></figure>
+  <div>
+    <div class="eyebrow">Posting</div>
+    <h2>Straight to the ledger<span class="dot">.</span></h2>
+    <p style="color:var(--mut)">Invoices that pass every check are coded to the right expense account and created as bills in QuickBooks Online through its API. No re-keying. QuickBooks returns a bill ID for each one, which is written back to the log.</p>
+    <ul class="list">
+      <li><span class="ok">✓</span><div>Vendor mapped to a GL account (software, travel, legal, utilities and more)</div></li>
+      <li><span class="ok">✓</span><div>Due date, invoice number and amount carried over from the PDF</div></li>
+      <li><span class="ok">✓</span><div>A blank bill ID in the log means nothing was posted</div></li>
+    </ul>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="eyebrow">Audit trail</div>
+  <h2>Every decision, logged<span class="dot">.</span></h2>
+  <p class="lead">One row per invoice: when it ran, what was decided, the QuickBooks bill ID if it posted, and the reason if it didn't. This is the record an auditor or controller asks for.</p>
+  <figure class="shot scroll" style="margin-left:0;margin-right:0"><img src="assets/audit-log.webp" alt="Audit log in Google Sheets with columns logged_at, invoice_number, vendor_name, status, action_taken, qbo_bill_id, notified_to and notes." loading="lazy" width="1754" height="666"><figcaption>The audit log in Google Sheets. Reviewer email addresses are blurred.</figcaption></figure>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="offer">
+    <div>
+      <div class="eyebrow">Work with me</div>
+      <h2>An AP automation pilot for your books<span class="dot">.</span></h2>
+      <p>I build this workflow around your inbox, your accounting system and your approval rules, then test it on a batch of your real invoices before anything goes live.</p>
+      <a class="btn" href="BOOK_CALL_URL" style="margin-top:12px">Book a 20-min call →</a>
+    </div>
+    <ul>
+      <li>QuickBooks Online or Xero</li>
+      <li>Your vendor list, expense accounts and approval limits</li>
+      <li>Review emails to the person you choose</li>
+      <li>Audit log your accountant can read</li>
+      <li>Fixed price, agreed after the call</li>
+      <li>Handover documentation and support</li>
+    </ul>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap two">
+  <div>
+    <div class="eyebrow">About</div>
+    <div class="about">
+      <div class="avatar">SY</div>
+      <div>
+        <h2 style="font-size:34px">Built by an auditor<span class="dot">.</span></h2>
+        <p style="color:var(--mut)">I'm Sadia Yusuf, a Chartered Accountant (ICAI) with 7+ years in statutory and internal audit, now building finance automation. I design workflows the way I used to test them: controls first, exceptions to people, and an evidence trail for every decision.</p>
+        <a class="btn ghost" href="LINKEDIN_URL">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="eyebrow">Questions</div>
+    <details><summary>Does the AI post bills on its own?</summary><p>No. The AI only reads the invoice. Fixed rules decide whether it posts, and anything that fails a check goes to a person.</p></details>
+    <details><summary>Which accounting systems does it work with?</summary><p>This build uses QuickBooks Online. The same design works with Xero and Zoho Books, which have similar bill APIs.</p></details>
+    <details><summary>What happens if something breaks?</summary><p>An error trigger sends an alert, and the audit log shows exactly which invoice failed and why. Nothing is half-posted.</p></details>
+    <details><summary>Where does my data go?</summary><p>The workflow can run self-hosted on your own server. Invoices are sent to the AI model only for extraction, and access keys stay in your environment.</p></details>
+    <details><summary>Is this tested on real client data?</summary><p>This case study is a demo build on a QuickBooks sandbox with synthetic invoices. A pilot is tested on your real invoices before go-live.</p></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© 2026 Sadia Yusuf · AP Automation case study</span>
+  <span><a href="https://github.com/sadia-yusuf/novatech-ap-automation">GitHub</a> · <a href="LINKEDIN_URL">LinkedIn</a></span>
+</div></footer>
+</body>
+</html>
